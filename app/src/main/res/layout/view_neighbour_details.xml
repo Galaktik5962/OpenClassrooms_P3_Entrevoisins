@@ -1,170 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#D6D6D6">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/avatar"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:contentDescription="avatar_du_voisin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_account" />
-
-    <ImageButton
-        android:id="@+id/returnButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:contentDescription="bouton_de_retour"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?attr/actionModeCloseDrawable"
-        app:tint="#FFFFFF" />
-
-    <TextView
-        android:id="@+id/Name_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="Caroline"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#FFFFFF"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/avatar"
-        app:layout_constraintStart_toStartOf="@+id/avatar" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:layout_margin="10dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/avatar">
+        android:layout_height="match_parent"
+        android:background="#D6D6D6">
+
+        <ImageView
+            android:id="@+id/avatarUrl"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="5dp"
+            android:contentDescription="avatar_du_voisin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_account" />
+
+        <ImageButton
+            android:id="@+id/returnButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="bouton_de_retour"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="?attr/actionModeCloseDrawable"
+            app:tint="#FFFFFF" />
 
         <TextView
-            android:id="@+id/Name_2"
-            android:layout_width="match_parent"
+            android:id="@+id/name_1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:text="Caroline"
+            android:layout_marginBottom="24dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="20sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/avatarUrl"
+            app:layout_constraintStart_toStartOf="@+id/avatarUrl" />
 
-        <TextView
-            android:id="@+id/PostalAddress"
-            android:layout_width="300dp"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_margin="10dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/avatarUrl">
+
+            <TextView
+                android:id="@+id/name_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="65dp" />
+
+            <ImageView
+                android:id="@+id/ic_location_postal_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="60dp"
+                android:contentDescription="icône_adresse_postale"
+                app:srcCompat="@drawable/ic_location_postal_address" />
+
+            <TextView
+                android:id="@+id/phoneNumber"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="102dp" />
+
+            <ImageView
+                android:id="@+id/ic_phone_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="100dp"
+                android:contentDescription="icône_numéro_de_téléphone"
+                app:srcCompat="@drawable/ic_phone_number" />
+
+            <TextView
+                android:id="@+id/socialNetwork"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="142dp"
+                android:text="www.facebook.fr/caroline" />
+
+            <ImageView
+                android:id="@+id/ic_social_network"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="140dp"
+                android:contentDescription="icône_réseau_social"
+                app:srcCompat="@drawable/ic_social_network" />
+
+            <View
+                android:id="@+id/line_1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="47dp"
+                android:background="#D6D6D6" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="65dp"
-            android:text="Saint pierre du mont à 5km" />
+            android:layout_marginTop="10dp"
+            android:layout_margin="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView">
 
-        <ImageView
-            android:id="@+id/ic_location_postal_address"
+            <TextView
+                android:id="@+id/aboutMeTitle"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="20dp"
+                android:text="A propos de moi"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="20sp" />
+
+            <View
+                android:id="@+id/line_2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="47dp"
+                android:background="#D6D6D6" />
+
+            <TextView
+                android:id="@+id/aboutMe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="10dp" />
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/miseEnFavori"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="60dp"
-            android:contentDescription="icône_adresse_postale"
-            app:srcCompat="@drawable/ic_location_postal_address" />
-
-        <TextView
-            android:id="@+id/PhoneNumber"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="102dp"
-            android:text="+33 6 86 57 90 14" />
-
-        <ImageView
-            android:id="@+id/ic_phone_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="100dp"
-            android:contentDescription="icône_numéro_de_téléphone"
-            app:srcCompat="@drawable/ic_phone_number" />
-
-        <TextView
-            android:id="@+id/SocialNetwork"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="142dp"
-            android:text="www.facebook.fr/caroline" />
-
-        <ImageView
-            android:id="@+id/ic_social_network"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="140dp"
-            android:contentDescription="icône_réseau_social"
-            app:srcCompat="@drawable/ic_social_network" />
-
-        <View
-            android:id="@+id/line_1"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="47dp"
-            android:background="#D6D6D6" />
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:layout_margin="10dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" >
-
-        <TextView
-            android:id="@+id/AboutMe"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:text="A propos de moi"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="20sp" />
-
-        <View
-            android:id="@+id/line_2"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="47dp"
-            android:background="#D6D6D6" />
-
-        <TextView
-            android:id="@+id/AboutMeDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginTop="60dp"
-            android:text="Bonjour ! Je souhaiterais faire de la marche nordique.\n Pas initiée, je recherche une ou plusieurs personnes susceptibles de m'accompagner ! J'aime les jeux de cartes tels la belote et le tarot..." />
-    </androidx.cardview.widget.CardView>
+            android:clickable="true"
+            android:contentDescription="bouton_de_mise_en_favori"
+            app:backgroundTint="#F6F5F5"
+            app:layout_constraintBottom_toBottomOf="@+id/avatarUrl"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/avatarUrl"
+            app:srcCompat="@drawable/ic_star_white_24dp"
+            app:tint="#F7F307" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/MiseEnFavori"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:clickable="true"
-        android:contentDescription="bouton_de_mise_en_favori"
-        app:backgroundTint="#F6F5F5"
-        app:layout_constraintBottom_toBottomOf="@+id/avatar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/avatar"
-        app:srcCompat="@drawable/ic_star_white_24dp"
-        app:tint="#F7F307" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
