@@ -50,6 +50,12 @@ public class ViewDetailsNeighbourActivity extends AppCompatActivity {
             TextView phoneNumberTextView = findViewById(R.id.phoneNumber);
             phoneNumberTextView.setText(phoneNumber);
 
+            TextView socialNetworkTextview = findViewById(R.id.socialNetwork);
+            //associer le nom du voisin à l'url facebook
+            String facebookUrl = "https://www.facebook.com/%s";
+            String facebookUrlWithNeighbourName = String.format(facebookUrl, name);
+            socialNetworkTextview.setText(facebookUrlWithNeighbourName);
+
             TextView aboutMeTitleTextView = findViewById(R.id.aboutMeTitle);
             aboutMeTitleTextView.setText("A propos de moi");
 
