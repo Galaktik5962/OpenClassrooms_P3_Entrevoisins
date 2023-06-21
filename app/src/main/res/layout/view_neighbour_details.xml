@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--ajout d'un ScrollView pour scroller en mode paysage-->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,7 +13,7 @@
         android:background="#D6D6D6">
 
         <ImageView
-            android:id="@+id/avatarUrl"
+            android:id="@+id/avatarUrlImageView"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginTop="5dp"
@@ -33,7 +34,8 @@
             app:tint="#FFFFFF" />
 
         <TextView
-            android:id="@+id/name_1"
+            android:id="@+id/name1TextView"
+            tools:text = "Caroline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -41,8 +43,8 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/avatarUrl"
-            app:layout_constraintStart_toStartOf="@+id/avatarUrl" />
+            app:layout_constraintBottom_toBottomOf="@+id/avatarUrlImageView"
+            app:layout_constraintStart_toStartOf="@+id/avatarUrlImageView" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -53,10 +55,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/avatarUrl">
+            app:layout_constraintTop_toBottomOf="@+id/avatarUrlImageView">
 
             <TextView
-                android:id="@+id/name_2"
+                android:id="@+id/name2TextView"
+                tools:text = "Caroline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -64,8 +67,10 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="20sp" />
 
+            <!--tools:text = / permet de mettre du texte à des fins de tests, n'apparait pas lors de l'éxécution-->
             <TextView
-                android:id="@+id/address"
+                android:id="@+id/addressTextView"
+                tools:text = "Saint pierre du mont à 5km"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
@@ -81,7 +86,8 @@
                 app:srcCompat="@drawable/ic_location_postal_address" />
 
             <TextView
-                android:id="@+id/phoneNumber"
+                android:id="@+id/phoneNumberTextView"
+                tools:text = "+33 6 86 57 90 14"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
@@ -98,11 +104,11 @@
 
             <TextView
                 android:id="@+id/socialNetwork"
+                tools:text = "www.facebook.fr/caroline"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
-                android:layout_marginTop="142dp"
-                android:text="www.facebook.fr/caroline" />
+                android:layout_marginTop="142dp" />
 
             <ImageView
                 android:id="@+id/ic_social_network"
@@ -149,8 +155,10 @@
                 android:layout_marginTop="47dp"
                 android:background="#D6D6D6" />
 
+            <!--\n permet de faire un retour à la ligne-->
             <TextView
-                android:id="@+id/aboutMe"
+                android:id="@+id/aboutMeTextView"
+                tools:text = "Bonjour ! Je souhaiterais faire de la marche nordique.\nPas initiée, je recherche une ou plusieurs personnes susceptibles de m'accompagner ! J'aime les jeux de cartes tels la belote et le tarot .."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -166,9 +174,9 @@
             android:clickable="true"
             android:contentDescription="bouton_de_mise_en_favori"
             app:backgroundTint="#F6F5F5"
-            app:layout_constraintBottom_toBottomOf="@+id/avatarUrl"
+            app:layout_constraintBottom_toBottomOf="@+id/avatarUrlImageView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/avatarUrl"
+            app:layout_constraintTop_toBottomOf="@+id/avatarUrlImageView"
             app:srcCompat="@drawable/ic_star_white_24dp"
             app:tint="#F7F307" />
     </androidx.constraintlayout.widget.ConstraintLayout>

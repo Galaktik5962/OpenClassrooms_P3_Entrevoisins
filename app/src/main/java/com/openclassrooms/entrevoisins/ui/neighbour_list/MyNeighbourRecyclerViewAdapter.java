@@ -18,6 +18,7 @@ import com.openclassrooms.entrevoisins.model.Neighbour;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.io.Serializable;
 import java.util.List;
 
 import butterknife.BindView;
@@ -58,16 +59,9 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //création d'un intent pour amener vers ma nouvelle activité : ViewDetailsNeighbourActivity
-                Intent intent = new Intent(view.getContext(), ViewDetailsNeighbourActivity.class);
 
-                //charger les données du voisin dans l'intent
-                intent.putExtra("id", neighbour.getId());
-                intent.putExtra("name", neighbour.getName());
-                intent.putExtra("avatarUrl", neighbour.getAvatarUrl());
-                intent.putExtra("address", neighbour.getAddress());
-                intent.putExtra("phoneNumber", neighbour.getPhoneNumber());
-                intent.putExtra("aboutMe", neighbour.getAboutMe());
+                Intent intent = new Intent(view.getContext(), ViewDetailsNeighbourActivity.class);
+                intent.putExtra("neighbour", (Serializable) neighbour);
 
                 //démarrage de mon activité ViewDetailsNeighbourActivity
                 view.getContext().startActivity(intent);
