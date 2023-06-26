@@ -1,20 +1,30 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
 import com.bumptech.glide.Glide;
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 
 import com.openclassrooms.entrevoisins.databinding.ViewNeighbourDetailsBinding;
+import com.openclassrooms.entrevoisins.service.NeighbourApiService;
+
+import java.util.List;
 
 
 public class ViewDetailsNeighbourActivity extends AppCompatActivity {
+
+    private NeighbourApiService neighbourApiService;
+    private Neighbour neighbour;
+    private boolean isFavorite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,14 +40,14 @@ public class ViewDetailsNeighbourActivity extends AppCompatActivity {
         Neighbour neighbour = (Neighbour) intent.getSerializableExtra("neighbour");
 
         if (neighbour != null) {
-        long id = neighbour.getId();
-        String name = neighbour.getName();
-        String avatarUrl = neighbour.getAvatarUrl();
-        String address = neighbour.getAddress();
-        String phoneNumber = neighbour.getPhoneNumber();
-        String aboutMe = neighbour.getAboutMe();
+            long id = neighbour.getId();
+            String name = neighbour.getName();
+            String avatarUrl = neighbour.getAvatarUrl();
+            String address = neighbour.getAddress();
+            String phoneNumber = neighbour.getPhoneNumber();
+            String aboutMe = neighbour.getAboutMe();
 
-        // Afficher les données du voisin récupérées ci-dessus
+            // Afficher les données du voisin récupérées ci-dessus
 
             Glide.with(this)
                     .load(avatarUrl)
@@ -54,7 +64,6 @@ public class ViewDetailsNeighbourActivity extends AppCompatActivity {
             String facebookUrlWithNeighbourName = String.format(facebookUrl, name);
             binding.socialNetwork.setText(facebookUrlWithNeighbourName);
 
-
         }
 
         //configuration du bouton de retour
@@ -65,5 +74,37 @@ public class ViewDetailsNeighbourActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        binding.favoriteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                isFavorite = !neighbour.isFavorite();
+                neighbour.setFavorite(isFavorite);
+                setFavoriteButtonAppearance(binding.favoriteButton, isFavorite);
+
+                List<Neighbour> favoriteNeighbours = neighbourApiService.getFavoriteNeighbours();
+                if (isFavorite) {
+                    favoriteNeighbours.add(neighbour);
+                } else {
+                    favoriteNeighbours.remove(neighbour);
+                }
+                neighbourApiService.setFavoriteNeighbours(favoriteNeighbours);
+            }
+        });
+
+        neighbourApiService = DI.getNeighbourApiService();
+        isFavorite = neighbour.isFavorite();
+        setFavoriteButtonAppearance(binding.favoriteButton, isFavorite);
+    }
+
+    private void setFavoriteButtonAppearance(ImageButton button, boolean isFavorite) {
+        if (isFavorite) {
+            int color = ContextCompat.getColor(this, R.color.favorite_yellow);
+            button.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+        } else {
+            button.clearColorFilter();
+        }
     }
 }
+
+// ajouter l'écouteur de clic sur le bouton favori -> utiliser le setfavorite

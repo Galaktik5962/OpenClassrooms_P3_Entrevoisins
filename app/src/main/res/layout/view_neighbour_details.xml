@@ -167,7 +167,7 @@
         </androidx.cardview.widget.CardView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/miseEnFavori"
+            android:id="@+id/favoriteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
@@ -178,7 +178,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/avatarUrlImageView"
             app:srcCompat="@drawable/ic_star_white_24dp"
-            app:tint="#F7F307" />
+            app:tint="#757575" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
