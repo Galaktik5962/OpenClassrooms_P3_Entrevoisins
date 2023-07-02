@@ -11,7 +11,6 @@ import java.util.List;
 public class DummyNeighbourApiService implements NeighbourApiService {
 
     private List<Neighbour> neighbours = DummyNeighbourGenerator.generateNeighbours();
-    private List<Neighbour> favoriteNeighbours = new ArrayList<>();
 
     /**
      * {@inheritDoc}
@@ -40,27 +39,27 @@ public class DummyNeighbourApiService implements NeighbourApiService {
 
     @Override
     public List<Neighbour> getFavoriteNeighbours() {
+        List<Neighbour> favoriteNeighbours = new ArrayList<>();
+        for (Neighbour neighbour : neighbours) {
+            if (neighbour.isFavorite()) {
+                favoriteNeighbours.add(neighbour);
+            }
+        }
         return favoriteNeighbours;
     }
 
     @Override
     public void setFavoriteNeighbours(List<Neighbour> favoriteNeighbours) {
-        this.favoriteNeighbours = favoriteNeighbours;
+        for (Neighbour neighbour : neighbours) {
+            if (favoriteNeighbours.contains(neighbour)) {
+                neighbour.setFavorite(true);
+            } else {
+                neighbour.setFavorite(false);
+            }
+        }
     }
+}
 
-    @Override
-    public void addFavoriteNeighbour(Neighbour neighbour) {
-        favoriteNeighbours.add(neighbour);
-    }
-
-    @Override
-    public void removeFavoriteNeighbour(Neighbour neighbour) {
-        favoriteNeighbours.remove(neighbour);
-    }
-
-
-
-
-    } // implémenter les deux méthodes getfavorite (boolean pour filtrer) et setfavorite (boolean dans nieghbour)
+// implémenter les deux méthodes getfavorite (boolean pour filtrer) et setfavorite (boolean dans nieghbour)
     //logique de gestion de favori et ensuite renvoyer la liste de favori
 

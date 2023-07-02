@@ -6,13 +6,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
-import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
+import com.openclassrooms.entrevoisins.events.DeleteFavoriteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
@@ -77,12 +79,19 @@ public class FavoriteFragment extends Fragment {
         EventBus.getDefault().unregister(this);
     }
 
+    /**
+     * Fired if the user clicks on a delete button for a favorite neighbour
+     *
+     * @param event
+     */
+
     @Subscribe
-    public void onDeleteNeighbour(DeleteNeighbourEvent event) {
-        if (mFavoriteNeighbours.contains(event.neighbour)) {
-            mApiService.removeFavoriteNeighbour(event.neighbour);
-            mFavoriteNeighbours.remove(event.neighbour);
-            mRecyclerView.getAdapter().notifyDataSetChanged();
-        }
+    public void onDeleteFavoriteNeighbour(DeleteFavoriteNeighbourEvent event) {
+        Neighbour neighbour = event.neighbour;
+        List<Neighbour> favoriteNeighbours = mApiService.getFavoriteNeighbours();
+        favoriteNeighbours.remove(neighbour);
+        mApiService.setFavoriteNeighbours(favoriteNeighbours);
+        initList();
     }
+
 }

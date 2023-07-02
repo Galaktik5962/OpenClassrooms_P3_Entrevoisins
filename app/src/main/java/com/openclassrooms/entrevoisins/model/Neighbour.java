@@ -28,7 +28,6 @@ public class Neighbour implements Serializable {
 
     private boolean isFavorite;
 
-
     /**
      * Constructor
      * @param id
@@ -100,7 +99,6 @@ public class Neighbour implements Serializable {
     public void setFavorite(boolean favorite) {
         isFavorite = favorite;
     }
-
 
     @Override
     public boolean equals(Object o) {

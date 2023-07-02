@@ -75,13 +75,22 @@ public class ViewDetailsNeighbourActivity extends AppCompatActivity {
             }
         });
 
+        // Configuration des vues
+        ImageButton favoriteButton = binding.favoriteButton;
+
+        // Récupération du statut de favori
+        isFavorite = neighbour.isFavorite();
+        setFavoriteButtonAppearance(favoriteButton, isFavorite);
+
+        // Configuration de l'écouteur de clic pour le bouton favori
         binding.favoriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                isFavorite = !neighbour.isFavorite();
+            public void onClick(View v) {
+                isFavorite = !isFavorite;
+                setFavoriteButtonAppearance(favoriteButton, isFavorite);
                 neighbour.setFavorite(isFavorite);
-                setFavoriteButtonAppearance(binding.favoriteButton, isFavorite);
 
+                // Mise à jour de la liste des voisins favoris dans l'API
                 List<Neighbour> favoriteNeighbours = neighbourApiService.getFavoriteNeighbours();
                 if (isFavorite) {
                     favoriteNeighbours.add(neighbour);
@@ -92,9 +101,8 @@ public class ViewDetailsNeighbourActivity extends AppCompatActivity {
             }
         });
 
+        // Initialisation du service de l'API
         neighbourApiService = DI.getNeighbourApiService();
-        isFavorite = neighbour.isFavorite();
-        setFavoriteButtonAppearance(binding.favoriteButton, isFavorite);
     }
 
     private void setFavoriteButtonAppearance(ImageButton button, boolean isFavorite) {
