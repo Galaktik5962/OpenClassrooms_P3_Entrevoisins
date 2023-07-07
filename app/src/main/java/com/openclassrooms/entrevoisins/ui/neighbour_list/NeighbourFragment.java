@@ -62,7 +62,7 @@ public class NeighbourFragment extends Fragment {
      */
     private void initList() {
         mNeighbours = mApiService.getNeighbours();
-        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
+        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours, isFavoriteFragment()));
     }
 
     @Override
@@ -93,4 +93,9 @@ public class NeighbourFragment extends Fragment {
         mApiService.deleteNeighbour(event.neighbour);
         initList();
     }
+
+    private boolean isFavoriteFragment() {
+        return false; // Par défaut, ce fragment n'est pas le fragment des favoris
+    }
+
 }

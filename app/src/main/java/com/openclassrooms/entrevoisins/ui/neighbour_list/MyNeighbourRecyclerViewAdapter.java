@@ -29,9 +29,11 @@ import butterknife.ButterKnife;
 public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeighbourRecyclerViewAdapter.ViewHolder> {
 
     private final List<Neighbour> mNeighbours;
+    private boolean isFavoriteFragment; // Nouvelle variable pour indiquer si c'est le fragment favori
 
-    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items) {
+    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items, boolean isFavoriteFragment) {
         mNeighbours = items;
+        this.isFavoriteFragment = isFavoriteFragment;
     }
 
     @Override
@@ -54,7 +56,12 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
             @Override
             public void onClick(View v) {
                 if (neighbour.isFavorite()) {
-                    EventBus.getDefault().post(new DeleteFavoriteNeighbourEvent(neighbour));
+                    if (isFavoriteFragment) {
+                        EventBus.getDefault().post(new DeleteFavoriteNeighbourEvent(neighbour));
+                    } else {
+                        EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour));
+                        EventBus.getDefault().post(new DeleteFavoriteNeighbourEvent(neighbour));
+                    }
                 } else {
                     EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour));
                 }

@@ -56,7 +56,7 @@ public class FavoriteFragment extends Fragment {
 
     private void initList() {
         mFavoriteNeighbours = mApiService.getFavoriteNeighbours();
-        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mFavoriteNeighbours));
+        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mFavoriteNeighbours, isFavoriteFragment()));
     }
 
     //faire appel getfavorite
@@ -88,10 +88,13 @@ public class FavoriteFragment extends Fragment {
     @Subscribe
     public void onDeleteFavoriteNeighbour(DeleteFavoriteNeighbourEvent event) {
         Neighbour neighbour = event.neighbour;
-        List<Neighbour> favoriteNeighbours = mApiService.getFavoriteNeighbours();
-        favoriteNeighbours.remove(neighbour);
-        mApiService.setFavoriteNeighbours(favoriteNeighbours);
+        neighbour.setFavorite(false);
+        mFavoriteNeighbours.remove(neighbour);
         initList();
+    }
+
+    private boolean isFavoriteFragment() {
+        return true; // Ce fragment est le fragment des favoris
     }
 
 }
