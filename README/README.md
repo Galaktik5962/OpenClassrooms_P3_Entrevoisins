@@ -1,6 +1,6 @@
-<h1 style="color: #007DC1; font-size: 24px;"> <strong> ENTREVOISINS </strong> </h1>
+<h1 style="color: steelblue; font-size: 24px;"> <strong> ENTREVOISINS </strong> </h1>
 
-<h2 style="color: #37B6FA; font-size: 22px;"> <strong> Description </strong> </h2>
+<h2 style="color: skyblue; font-size: 22px;"> <strong> Description </strong> </h2>
 
 Entrevoisins est une application qui permet à des personnes d’un même quartier de se rendre des petits services : 
 
@@ -112,17 +112,17 @@ You can also use <strong> Git Bash </strong>:
 
 <h2 style="color: #37B6FA; font-size: 22px;"> <strong> Galerie d'images / Image gallery </strong> </h2>
 
-<div style="display: flex; justify-content: center; margin-bottom: 20px">
+<div style="text-align: center; margin-bottom: 20px">
   <img src="Entrevoisins.png" alt="Logo de l'application">
 </div>
 
-<div style="display: flex; gap: 20px;">
+<div style="text-align: center;">
   <img src="Launching_App.png" alt="Lancement de l'application" style="width: 300px;">
   <img src="List_Of_Neighbors.png" alt="Liste des voisins" style="width: 300px;">
   <img src="Add_New_Neighbor.png" alt="Ajout d'un nouveau voisin" style="width: 300px;">
 </div>
 
-<div style="display: flex; gap: 20px; margin-top: 20px; justify-content: center;">
+<div style="text-align: center; margin-top: 20px;">
   <img src="Details_Screen.png" alt="Ecran de détails du voisin" style="width: 300px">
   <img src="List_Of_Favorites.png" alt="Liste des voisins favoris" style="width: 300px;">
 </div>
