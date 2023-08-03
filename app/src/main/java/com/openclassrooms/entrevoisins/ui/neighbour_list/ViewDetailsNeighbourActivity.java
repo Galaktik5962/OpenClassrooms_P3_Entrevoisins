@@ -23,19 +23,19 @@ import java.util.List;
 public class ViewDetailsNeighbourActivity extends AppCompatActivity {
 
     private NeighbourApiService neighbourApiService;
-    private Neighbour neighbour;
+
+    public Neighbour neighbour;
     private boolean isFavorite;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //utilisation du view binding
+        // Using ViewBinding.
         ViewNeighbourDetailsBinding binding = ViewNeighbourDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
-        //récupération de l'intent
+        // Intent Recovery.
         Intent intent = getIntent();
         Neighbour neighbour = (Neighbour) intent.getSerializableExtra("neighbour");
 
@@ -47,8 +47,7 @@ public class ViewDetailsNeighbourActivity extends AppCompatActivity {
             String phoneNumber = neighbour.getPhoneNumber();
             String aboutMe = neighbour.getAboutMe();
 
-            // Afficher les données du voisin récupérées ci-dessus
-
+            //Show neighbor data retrieved above.
             Glide.with(this)
                     .load(avatarUrl)
                     .into(binding.avatarUrlImageView);
@@ -59,30 +58,29 @@ public class ViewDetailsNeighbourActivity extends AppCompatActivity {
             binding.phoneNumberTextView.setText(phoneNumber);
             binding.aboutMeTextView.setText(aboutMe);
 
-            //associer le nom du voisin à l'url facebook
+            // Associate neighbor name with facebook url.
             String facebookUrl = "https://www.facebook.com/%s";
             String facebookUrlWithNeighbourName = String.format(facebookUrl, name);
             binding.socialNetwork.setText(facebookUrlWithNeighbourName);
-
         }
 
-        //configuration du bouton de retour
+        // Back button configuration
         binding.returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // appel à la méthode finish pour revenir à l'activité précédente
+                // Call to the finish method to return to the previous activity.
                 finish();
             }
         });
 
-        // Configuration des vues
+        // Configuring Views.
         ImageButton favoriteButton = binding.favoriteButton;
 
-        // Récupération du statut de favori
+        // Recovering favorite status.
         isFavorite = neighbour.isFavorite();
         setFavoriteButtonAppearance(favoriteButton, isFavorite);
 
-        // Configuration de l'écouteur de clic pour le bouton favori
+        // Configuring the click listener for the favorite button.
         binding.favoriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,7 +88,7 @@ public class ViewDetailsNeighbourActivity extends AppCompatActivity {
                 setFavoriteButtonAppearance(favoriteButton, isFavorite);
                 neighbour.setFavorite(isFavorite);
 
-                // Mise à jour de la liste des voisins favoris dans l'API
+                // Updated list of favorite neighbors in the API service.
                 List<Neighbour> favoriteNeighbours = neighbourApiService.getFavoriteNeighbours();
                 if (isFavorite) {
                     favoriteNeighbours.add(neighbour);
@@ -101,7 +99,7 @@ public class ViewDetailsNeighbourActivity extends AppCompatActivity {
             }
         });
 
-        // Initialisation du service de l'API
+        // API service initialization.
         neighbourApiService = DI.getNeighbourApiService();
     }
 
@@ -114,5 +112,3 @@ public class ViewDetailsNeighbourActivity extends AppCompatActivity {
         }
     }
 }
-
-// ajouter l'écouteur de clic sur le bouton favori -> utiliser le setfavorite

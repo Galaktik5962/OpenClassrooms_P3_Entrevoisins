@@ -2,18 +2,18 @@ package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
+import com.openclassrooms.entrevoisins.events.DeleteFavoriteNeighbourEvent;
 import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
@@ -24,7 +24,7 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.List;
 
 
-public class NeighbourFragment extends Fragment {
+public class NeighbourFragment extends Fragment implements DeleteClickListener {
 
     private NeighbourApiService mApiService;
     private List<Neighbour> mNeighbours;
@@ -62,7 +62,7 @@ public class NeighbourFragment extends Fragment {
      */
     private void initList() {
         mNeighbours = mApiService.getNeighbours();
-        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours, isFavoriteFragment()));
+        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours, this));
     }
 
     @Override
@@ -89,13 +89,22 @@ public class NeighbourFragment extends Fragment {
      */
     @Subscribe
     public void onDeleteNeighbour(DeleteNeighbourEvent event) {
-        Log.d("tag", "Ondelete2");
         mApiService.deleteNeighbour(event.neighbour);
         initList();
     }
 
-    private boolean isFavoriteFragment() {
-        return false; // Par défaut, ce fragment n'est pas le fragment des favoris
+    @Override
+    public void onDeleteClick(Neighbour neighbour) {
+        EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour));
+        if (neighbour.isFavorite()) {
+            EventBus.getDefault().post(new DeleteFavoriteNeighbourEvent(neighbour));
+        }
     }
+
+
+
+
+
+
 
 }

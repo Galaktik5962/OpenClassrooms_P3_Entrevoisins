@@ -1,7 +1,7 @@
 package com.openclassrooms.entrevoisins.model;
 
-import java.util.Objects;
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Model object representing a Neighbour
@@ -17,7 +17,7 @@ public class Neighbour implements Serializable {
     /** Avatar */
     private String avatarUrl;
 
-    /** Adress */
+    /** Address */
     private String address;
 
     /** Phone number */
@@ -26,6 +26,7 @@ public class Neighbour implements Serializable {
     /** About me */
     private String aboutMe;
 
+    /** A boolean variable used to store the favorite status of a neighbor */
     private boolean isFavorite;
 
     /**
@@ -92,10 +93,12 @@ public class Neighbour implements Serializable {
         this.aboutMe = aboutMe;
     }
 
+    // A getter method that returns the current value of 'isFavorite'. It allows to determine if a neighbor is marked as favorite.
     public boolean isFavorite() {
         return isFavorite;
     }
 
+    // A setter method that allows updating the value of 'isFavorite' with true or false.
     public void setFavorite(boolean favorite) {
         isFavorite = favorite;
     }

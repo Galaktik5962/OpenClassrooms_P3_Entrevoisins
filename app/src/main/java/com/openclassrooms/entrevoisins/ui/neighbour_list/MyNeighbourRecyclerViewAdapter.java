@@ -1,7 +1,5 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,14 +8,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.openclassrooms.entrevoisins.R;
-import com.openclassrooms.entrevoisins.events.DeleteFavoriteNeighbourEvent;
-import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.io.Serializable;
 import java.util.List;
@@ -28,12 +24,12 @@ import butterknife.ButterKnife;
 
 public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeighbourRecyclerViewAdapter.ViewHolder> {
 
-    private final List<Neighbour> mNeighbours;
-    private boolean isFavoriteFragment; // Nouvelle variable pour indiquer si c'est le fragment favori
+    public final List<Neighbour> mNeighbours;
+    private DeleteClickListener deleteClickListener;
 
-    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items, boolean isFavoriteFragment) {
+    public MyNeighbourRecyclerViewAdapter(List<Neighbour> items, DeleteClickListener deleteClickListener) {
         mNeighbours = items;
-        this.isFavoriteFragment = isFavoriteFragment;
+        this.deleteClickListener = deleteClickListener;
     }
 
     @Override
@@ -55,20 +51,11 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
         holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (neighbour.isFavorite()) {
-                    if (isFavoriteFragment) {
-                        EventBus.getDefault().post(new DeleteFavoriteNeighbourEvent(neighbour));
-                    } else {
-                        EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour));
-                        EventBus.getDefault().post(new DeleteFavoriteNeighbourEvent(neighbour));
-                    }
-                } else {
-                    EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour));
+               deleteClickListener.onDeleteClick(neighbour);
                 }
-            }
         });
 
-        //ajout d'un écouteur de clics sur un voisin
+        // Added neighbor click listener.
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,9 +63,8 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 Intent intent = new Intent(view.getContext(), ViewDetailsNeighbourActivity.class);
                 intent.putExtra("neighbour", (Serializable) neighbour);
 
-                //démarrage de mon activité ViewDetailsNeighbourActivity
+                // Starting my activity ViewDetailsNeighbourActivity.
                 view.getContext().startActivity(intent);
-
             }
         });
     }
