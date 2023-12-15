@@ -113,16 +113,16 @@ You can also use <strong> Git Bash </strong>:
 <h2 style="color: #37B6FA; font-size: 22px;"> <strong> Galerie d'images / Image gallery </strong> </h2>
 
 <div style="text-align: center; margin-bottom: 20px">
-  <img src="Entrevoisins.png" alt="Logo de l'application">
+  <img src="pictures_for_readme/Entrevoisins.png" alt="Logo de l'application">
 </div>
 
 <div style="text-align: center;">
-  <img src="Launching_App.png" alt="Lancement de l'application" style="width: 300px;">
-  <img src="List_Of_Neighbors.png" alt="Liste des voisins" style="width: 300px;">
-  <img src="Add_New_Neighbor.png" alt="Ajout d'un nouveau voisin" style="width: 300px;">
+  <img src="pictures_for_readme/Launching_App.png" alt="Lancement de l'application" style="width: 300px;">
+  <img src="pictures_for_readme/List_Of_Neighbors.png" alt="Liste des voisins" style="width: 300px;">
+  <img src="pictures_for_readme/Add_New_Neighbor.png" alt="Ajout d'un nouveau voisin" style="width: 300px;">
 </div>
 
 <div style="text-align: center; margin-top: 20px;">
-  <img src="Details_Screen.png" alt="Ecran de détails du voisin" style="width: 300px">
-  <img src="List_Of_Favorites.png" alt="Liste des voisins favoris" style="width: 300px;">
+  <img src="pictures_for_readme/Details_Screen.png" alt="Ecran de détails du voisin" style="width: 300px">
+  <img src="pictures_for_readme/List_Of_Favorites.png" alt="Liste des voisins favoris" style="width: 300px;">
 </div>
