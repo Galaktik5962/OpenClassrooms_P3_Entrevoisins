@@ -18,7 +18,10 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Unit test on Neighbour service
+ * Unit tests for the NeighbourService class.
+ * These tests cover various functionalities of the NeighbourService, including
+ * retrieving neighbours, deleting neighbours, creating new neighbours, and setting
+ * and retrieving favorite neighbours.
  */
 @RunWith(JUnit4.class)
 public class NeighbourServiceTest {
@@ -26,6 +29,10 @@ public class NeighbourServiceTest {
     private NeighbourApiService service;
     private DummyNeighbourApiService neighbourApiService;
 
+    /**
+     * Sets up the test environment by initializing instances of NeighbourApiService
+     * and DummyNeighbourApiService before each test method.
+     */
     @Before
     public void setup() {
 
@@ -33,6 +40,9 @@ public class NeighbourServiceTest {
         neighbourApiService = new DummyNeighbourApiService();
     }
 
+    /**
+     * Tests the successful retrieval of neighbours from the NeighbourService.
+     */
     @Test
     public void getNeighboursWithSuccess() {
         List<Neighbour> neighbours = service.getNeighbours();
@@ -40,6 +50,9 @@ public class NeighbourServiceTest {
         assertThat(neighbours, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedNeighbours.toArray()));
     }
 
+    /**
+     * Tests the successful deletion of a neighbour from the NeighbourService.
+     */
     @Test
     public void deleteNeighbourWithSuccess() {
         Neighbour neighbourToDelete = service.getNeighbours().get(0);
@@ -47,19 +60,26 @@ public class NeighbourServiceTest {
         assertFalse(service.getNeighbours().contains(neighbourToDelete));
     }
 
+    /**
+     * Tests the successful creation of a new neighbour using the NeighbourService.
+     */
     @Test
     public void createNeighbourWithSuccess() {
 
-        // Create a neighbor for the test
+        // Create a neighbour for the test
         Neighbour neighbour = new Neighbour(1, "John Doe", "http://example.com/avatar.jpg", "Some address", "0123456789", "About John Doe");
 
         // Calling the createNeighbour function
         service.createNeighbour(neighbour);
 
-        // Verification that the neighbor was added successfully
+        // Verification that the neighbour was added successfully
         assertTrue(service.getNeighbours().contains(neighbour));
     }
 
+    /**
+     * Tests the correct functionality of setting and retrieving favorite neighbours
+     * using the NeighbourApiService.
+     */
     @Test
     public void testSetFavoriteNeighbours() {
         List<Neighbour> neighbours = neighbourApiService.getNeighbours();
@@ -70,7 +90,7 @@ public class NeighbourServiceTest {
 
         neighbourApiService.setFavoriteNeighbours(favoriteNeighbours);
 
-        // Verify that neighbors are correctly marked as favorites after calling setFavoriteNeighbours
+        // Verify that neighbours are correctly marked as favorites after calling setFavoriteNeighbours
         for (Neighbour neighbour : neighbours) {
             if (favoriteNeighbours.contains(neighbour)) {
                 Assert.assertTrue(neighbour.isFavorite());
@@ -84,5 +104,4 @@ public class NeighbourServiceTest {
         Assert.assertEquals(favoriteNeighbours.size(), returnedFavoriteNeighbours.size());
         Assert.assertTrue(returnedFavoriteNeighbours.containsAll(favoriteNeighbours));
     }
-
 }
