@@ -30,10 +30,14 @@ public class Neighbour implements Serializable {
     private boolean isFavorite;
 
     /**
-     * Constructor
-     * @param id
-     * @param name
-     * @param avatarUrl
+     * Constructor for Neighbour.
+     *
+     * @param id          The unique identifier for the neighbour.
+     * @param name        The full name of the neighbour.
+     * @param avatarUrl   The URL of the neighbour's avatar.
+     * @param address     The address of the neighbour.
+     * @param phoneNumber The phone number of the neighbour.
+     * @param aboutMe     Information about the neighbour.
      */
     public Neighbour(long id, String name, String avatarUrl, String address,
                      String phoneNumber, String aboutMe) {

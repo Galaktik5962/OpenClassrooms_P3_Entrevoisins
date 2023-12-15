@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--ajout d'un ScrollView pour scroller en mode paysage-->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#E5E7E9">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#D6D6D6">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/avatarUrlImageView"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="5dp"
+            android:layout_height="270dp"
             android:contentDescription="avatar_du_voisin"
+            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_account" />
@@ -27,7 +27,11 @@
             android:id="@+id/returnButton"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"
             android:contentDescription="bouton_de_retour"
+            android:padding="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="?attr/actionModeCloseDrawable"
@@ -42,14 +46,14 @@
             android:layout_marginBottom="24dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
+            android:textSize="40sp"
             app:layout_constraintBottom_toBottomOf="@+id/avatarUrlImageView"
             app:layout_constraintStart_toStartOf="@+id/avatarUrlImageView" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="220dp"
             android:layout_margin="10dp"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -65,23 +69,22 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="20sp" />
+                android:textSize="25sp" />
 
-            <!--tools:text = / permet de mettre du texte à des fins de tests, n'apparait pas lors de l'éxécution-->
             <TextView
                 android:id="@+id/addressTextView"
                 tools:text = "Saint pierre du mont à 5km"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
-                android:layout_marginTop="65dp" />
+                android:layout_marginTop="77dp" />
 
             <ImageView
                 android:id="@+id/ic_location_postal_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="75dp"
                 android:contentDescription="icône_adresse_postale"
                 app:srcCompat="@drawable/ic_location_postal_address" />
 
@@ -91,14 +94,14 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
-                android:layout_marginTop="102dp" />
+                android:layout_marginTop="130dp" />
 
             <ImageView
                 android:id="@+id/ic_phone_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="127dp"
                 android:contentDescription="icône_numéro_de_téléphone"
                 app:srcCompat="@drawable/ic_phone_number" />
 
@@ -108,14 +111,14 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
-                android:layout_marginTop="142dp" />
+                android:layout_marginTop="182dp" />
 
             <ImageView
                 android:id="@+id/ic_social_network"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="140dp"
+                android:layout_marginTop="180dp"
                 android:contentDescription="icône_réseau_social"
                 app:srcCompat="@drawable/ic_social_network" />
 
@@ -123,8 +126,8 @@
                 android:id="@+id/line_1"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="47dp"
-                android:background="#D6D6D6" />
+                android:layout_marginTop="57dp"
+                android:background="#F2F3F4" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -140,30 +143,29 @@
             <TextView
                 android:id="@+id/aboutMeTitle"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="150dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginTop="20dp"
                 android:text="A propos de moi"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="20sp" />
+                android:textSize="25sp" />
 
             <View
                 android:id="@+id/line_2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="47dp"
-                android:background="#D6D6D6" />
+                android:layout_marginTop="57dp"
+                android:background="#F2F3F4" />
 
-            <!--\n permet de faire un retour à la ligne-->
             <TextView
                 android:id="@+id/aboutMeTextView"
-                tools:text = "Bonjour ! Je souhaiterais faire de la marche nordique.\nPas initiée, je recherche une ou plusieurs personnes susceptibles de m'accompagner ! J'aime les jeux de cartes tels la belote et le tarot .."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="60dp"
-                android:layout_marginEnd="10dp" />
+                android:layout_marginTop="75dp"
+                android:layout_marginEnd="10dp"
+                tools:text="Bonjour ! Je souhaiterais faire de la marche nordique.\nPas initiée, je recherche une ou plusieurs personnes susceptibles de m'accompagner ! J'aime les jeux de cartes tels la belote et le tarot .." />
         </androidx.cardview.widget.CardView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -19,7 +19,11 @@ import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
 import java.util.List;
 
-
+/**
+ * Activity to display detailed information about a specific neighbor.
+ * Allows the user to view neighbor details, such as name, avatar, address, phone number, and about me text.
+ * The activity also provides a button to mark the neighbor as a favorite and navigate back to the previous screen.
+ */
 public class ViewDetailsNeighbourActivity extends AppCompatActivity {
 
     private NeighbourApiService neighbourApiService;
@@ -27,27 +31,37 @@ public class ViewDetailsNeighbourActivity extends AppCompatActivity {
     public Neighbour neighbour;
     private boolean isFavorite;
 
+    /**
+     * Called when the activity is starting.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down,
+     *                           this Bundle contains the data it most recently supplied in onSaveInstanceState.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Using ViewBinding.
+        // Initialize the neighbor API service
+        neighbourApiService = DI.getNeighbourApiService();
+
+        // Using ViewBinding to inflate the layout
         ViewNeighbourDetailsBinding binding = ViewNeighbourDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Intent Recovery.
+        // Retrieve the selected neighbor from the Intent
         Intent intent = getIntent();
         Neighbour neighbour = (Neighbour) intent.getSerializableExtra("neighbour");
 
         if (neighbour != null) {
-            long id = neighbour.getId();
+
+            // Retrieve neighbor data
             String name = neighbour.getName();
             String avatarUrl = neighbour.getAvatarUrl();
             String address = neighbour.getAddress();
             String phoneNumber = neighbour.getPhoneNumber();
             String aboutMe = neighbour.getAboutMe();
 
-            //Show neighbor data retrieved above.
+            // Display neighbor data
             Glide.with(this)
                     .load(avatarUrl)
                     .into(binding.avatarUrlImageView);
@@ -58,37 +72,39 @@ public class ViewDetailsNeighbourActivity extends AppCompatActivity {
             binding.phoneNumberTextView.setText(phoneNumber);
             binding.aboutMeTextView.setText(aboutMe);
 
-            // Associate neighbor name with facebook url.
+            // Associate neighbor name with facebook url
             String facebookUrl = "https://www.facebook.com/%s";
             String facebookUrlWithNeighbourName = String.format(facebookUrl, name);
             binding.socialNetwork.setText(facebookUrlWithNeighbourName);
         }
 
-        // Back button configuration
+        // Configure the back button
         binding.returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Call to the finish method to return to the previous activity.
+
+                // Finish the activity to return to the previous screen
                 finish();
             }
         });
 
-        // Configuring Views.
+        // Configuring Views
         ImageButton favoriteButton = binding.favoriteButton;
 
-        // Recovering favorite status.
+        // Retrieve and set the initial favorite status
         isFavorite = neighbour.isFavorite();
         setFavoriteButtonAppearance(favoriteButton, isFavorite);
 
-        // Configuring the click listener for the favorite button.
+        // Configuring the click listener for the favorite button
         binding.favoriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Toggle the favorite status and update the UI
                 isFavorite = !isFavorite;
                 setFavoriteButtonAppearance(favoriteButton, isFavorite);
                 neighbour.setFavorite(isFavorite);
 
-                // Updated list of favorite neighbors in the API service.
+                // Update the list of favorite neighbors in the API service
                 List<Neighbour> favoriteNeighbours = neighbourApiService.getFavoriteNeighbours();
                 if (isFavorite) {
                     favoriteNeighbours.add(neighbour);
@@ -98,16 +114,21 @@ public class ViewDetailsNeighbourActivity extends AppCompatActivity {
                 neighbourApiService.setFavoriteNeighbours(favoriteNeighbours);
             }
         });
-
-        // API service initialization.
-        neighbourApiService = DI.getNeighbourApiService();
     }
 
+    /**
+     * Sets the appearance of the favorite button based on the favorite status.
+     *
+     * @param button     The ImageButton for marking the neighbor as a favorite.
+     * @param isFavorite A boolean indicating whether the neighbor is marked as a favorite.
+     */
     private void setFavoriteButtonAppearance(ImageButton button, boolean isFavorite) {
         if (isFavorite) {
+            // Set the color filter to indicate that the neighbor is a favorite
             int color = ContextCompat.getColor(this, R.color.favorite_yellow);
             button.setColorFilter(color, PorterDuff.Mode.SRC_IN);
         } else {
+            // Clear the color filter when the neighbor is not a favorite
             button.clearColorFilter();
         }
     }

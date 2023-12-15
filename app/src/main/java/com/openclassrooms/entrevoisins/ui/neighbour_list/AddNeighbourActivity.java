@@ -77,7 +77,6 @@ public class AddNeighbourActivity extends AppCompatActivity {
                 addButton.setEnabled(s.length() > 0);
             }
         });
-
     }
 
     @OnClick(R.id.create)

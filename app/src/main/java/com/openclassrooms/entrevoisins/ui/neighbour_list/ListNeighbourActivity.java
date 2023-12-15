@@ -7,15 +7,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.openclassrooms.entrevoisins.R;
-import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ListNeighbourActivity extends AppCompatActivity {
-
-    private NeighbourApiService mApiService;
 
     // UI Components
     @BindView(R.id.tabs)
@@ -38,15 +35,10 @@ public class ListNeighbourActivity extends AppCompatActivity {
         mViewPager.setAdapter(mPagerAdapter);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
         mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
-
     }
 
     @OnClick(R.id.add_neighbour)
     void addNeighbour() {
         AddNeighbourActivity.navigate(this);
-    }
-
-    public void setNeighbourApiService(NeighbourApiService apiService) {
-        mApiService = apiService;
     }
 }

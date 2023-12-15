@@ -100,11 +100,4 @@ public class NeighbourFragment extends Fragment implements DeleteClickListener {
             EventBus.getDefault().post(new DeleteFavoriteNeighbourEvent(neighbour));
         }
     }
-
-
-
-
-
-
-
 }
