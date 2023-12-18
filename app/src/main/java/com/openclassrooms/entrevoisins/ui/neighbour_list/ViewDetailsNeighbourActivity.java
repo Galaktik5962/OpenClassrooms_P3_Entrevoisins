@@ -107,11 +107,19 @@ public class ViewDetailsNeighbourActivity extends AppCompatActivity {
                 // Update the list of favorite neighbors in the API service
                 List<Neighbour> favoriteNeighbours = neighbourApiService.getFavoriteNeighbours();
                 if (isFavorite) {
-                    favoriteNeighbours.add(neighbour);
+
+                    neighbourApiService.addFavoriteNeighbour(neighbour);
+                    neighbourApiService.setFavoriteNeighbours(favoriteNeighbours);
+
                 } else {
-                    favoriteNeighbours.remove(neighbour);
+
+                    neighbourApiService.removeFavoriteNeighbour(neighbour);
+                    neighbourApiService.setFavoriteNeighbours(favoriteNeighbours);
+
                 }
-                neighbourApiService.setFavoriteNeighbours(favoriteNeighbours);
+
+                setFavoriteButtonAppearance(favoriteButton, isFavorite);
+
             }
         });
     }

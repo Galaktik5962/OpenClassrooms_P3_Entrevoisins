@@ -36,4 +36,16 @@ public interface NeighbourApiService {
      * @param favoriteNeighbours The neighbor for which to update the favorite status.
      */
     void setFavoriteNeighbours(List<Neighbour> favoriteNeighbours);
+
+    /**
+     * Adds a neighbor to the list of favorite neighbors.
+     * @param neighbour The neighbor to add to the list of favorite neighbors.
+     */
+    void addFavoriteNeighbour(Neighbour neighbour);
+
+    /**
+     * Removes a neighbor from the list of favorite neighbors.
+     * @param neighbour The neighbor to remove from the list of favorite neighbors.
+     */
+    void removeFavoriteNeighbour(Neighbour neighbour);
 }

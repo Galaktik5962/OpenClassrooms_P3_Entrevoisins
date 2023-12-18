@@ -104,4 +104,112 @@ public class NeighbourServiceTest {
         Assert.assertEquals(favoriteNeighbours.size(), returnedFavoriteNeighbours.size());
         Assert.assertTrue(returnedFavoriteNeighbours.containsAll(favoriteNeighbours));
     }
+
+    /**
+     * Tests the correct functionality of removing a favorite neighbour using the
+     * NeighbourApiService.
+     */
+    @Test
+
+    public void testRemoveFavoriteNeighbour() {
+        List<Neighbour> neighbours = neighbourApiService.getNeighbours();
+
+        List<Neighbour> favoriteNeighbours = new ArrayList<>();
+        favoriteNeighbours.add(neighbours.get(0));
+        favoriteNeighbours.add(neighbours.get(2));
+
+        neighbourApiService.setFavoriteNeighbours(favoriteNeighbours);
+
+        // Verify that neighbours are correctly marked as favorites after calling setFavoriteNeighbours
+        for (Neighbour neighbour : neighbours) {
+            if (favoriteNeighbours.contains(neighbour)) {
+                Assert.assertTrue(neighbour.isFavorite());
+            } else {
+                Assert.assertFalse(neighbour.isFavorite());
+            }
+        }
+
+        // Checking that the favorites returned by getFavoriteNeighbours are correct
+        List<Neighbour> returnedFavoriteNeighbours = neighbourApiService.getFavoriteNeighbours();
+        Assert.assertEquals(favoriteNeighbours.size(), returnedFavoriteNeighbours.size());
+        Assert.assertTrue(returnedFavoriteNeighbours.containsAll(favoriteNeighbours));
+
+        // Removing a favorite neighbour
+        neighbourApiService.removeFavoriteNeighbour(favoriteNeighbours.get(0));
+
+        // Checking that the favorites returned by getFavoriteNeighbours are correct
+        returnedFavoriteNeighbours = neighbourApiService.getFavoriteNeighbours();
+        Assert.assertEquals(favoriteNeighbours.size() - 1, returnedFavoriteNeighbours.size());
+        Assert.assertFalse(returnedFavoriteNeighbours.contains(favoriteNeighbours.get(0)));
+    }
+
+    /**
+     * Tests the correct functionality of adding a favorite neighbour using the
+     * NeighbourApiService.
+     */
+    @Test
+    public void testAddFavoriteNeighbour() {
+        List<Neighbour> neighbours = neighbourApiService.getNeighbours();
+
+        List<Neighbour> favoriteNeighbours = new ArrayList<>();
+        favoriteNeighbours.add(neighbours.get(0));
+        favoriteNeighbours.add(neighbours.get(2));
+
+        neighbourApiService.setFavoriteNeighbours(favoriteNeighbours);
+
+        // Verify that neighbours are correctly marked as favorites after calling setFavoriteNeighbours
+        for (Neighbour neighbour : neighbours) {
+            if (favoriteNeighbours.contains(neighbour)) {
+                Assert.assertTrue(neighbour.isFavorite());
+            } else {
+                Assert.assertFalse(neighbour.isFavorite());
+            }
+        }
+
+        // Checking that the favorites returned by getFavoriteNeighbours are correct
+        List<Neighbour> returnedFavoriteNeighbours = neighbourApiService.getFavoriteNeighbours();
+        Assert.assertEquals(favoriteNeighbours.size(), returnedFavoriteNeighbours.size());
+        Assert.assertTrue(returnedFavoriteNeighbours.containsAll(favoriteNeighbours));
+
+        // Adding a favorite neighbour
+        neighbourApiService.addFavoriteNeighbour(neighbours.get(1));
+
+        // Checking that the favorites returned by getFavoriteNeighbours are correct
+        returnedFavoriteNeighbours = neighbourApiService.getFavoriteNeighbours();
+        Assert.assertEquals(favoriteNeighbours.size() + 1, returnedFavoriteNeighbours.size());
+        Assert.assertTrue(returnedFavoriteNeighbours.contains(neighbours.get(1)));
+    }
+
+    /**
+     * Tests the correct functionality of retrieving favorite neighbours using the
+     * NeighbourApiService.
+     */
+    @Test
+    public void testGetFavoriteNeighbours() {
+        List<Neighbour> neighbours = neighbourApiService.getNeighbours();
+
+        List<Neighbour> favoriteNeighbours = new ArrayList<>();
+        favoriteNeighbours.add(neighbours.get(0));
+        favoriteNeighbours.add(neighbours.get(2));
+
+        neighbourApiService.setFavoriteNeighbours(favoriteNeighbours);
+
+        // Verify that neighbours are correctly marked as favorites after calling setFavoriteNeighbours
+        for (Neighbour neighbour : neighbours) {
+            if (favoriteNeighbours.contains(neighbour)) {
+                Assert.assertTrue(neighbour.isFavorite());
+            } else {
+                Assert.assertFalse(neighbour.isFavorite());
+            }
+        }
+
+        // Checking that the favorites returned by getFavoriteNeighbours are correct
+        List<Neighbour> returnedFavoriteNeighbours = neighbourApiService.getFavoriteNeighbours();
+        Assert.assertEquals(favoriteNeighbours.size(), returnedFavoriteNeighbours.size());
+        Assert.assertTrue(returnedFavoriteNeighbours.containsAll(favoriteNeighbours));
+    }
 }
+
+//get favorites
+// add
+//remove
