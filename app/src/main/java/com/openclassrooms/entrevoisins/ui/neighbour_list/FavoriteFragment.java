@@ -1,22 +1,17 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.openclassrooms.entrevoisins.R;
-import com.openclassrooms.entrevoisins.databinding.ViewNeighbourDetailsBinding;
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.events.DeleteFavoriteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
@@ -121,8 +116,8 @@ public class FavoriteFragment extends Fragment implements DeleteClickListener {
      */
     @Subscribe
     public void onDeleteFavoriteNeighbour (DeleteFavoriteNeighbourEvent event) {
-        event.neighbour.setFavorite(false);
-        mFavoriteNeighbours.remove(event.neighbour);
+        mApiService.removeFavoriteNeighbour(event.neighbour);
+        mApiService.setFavoriteNeighbours(mFavoriteNeighbours);
         initList();
     }
 

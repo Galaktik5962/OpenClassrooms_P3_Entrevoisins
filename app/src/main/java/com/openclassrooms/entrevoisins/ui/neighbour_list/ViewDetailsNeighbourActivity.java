@@ -117,9 +117,6 @@ public class ViewDetailsNeighbourActivity extends AppCompatActivity {
                     neighbourApiService.setFavoriteNeighbours(favoriteNeighbours);
 
                 }
-
-                setFavoriteButtonAppearance(favoriteButton, isFavorite);
-
             }
         });
     }
